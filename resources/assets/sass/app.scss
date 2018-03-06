@@ -61,3 +61,12 @@ body {
         }
     }
 }
+
+/** 注册页面验证码样式(在图形验证码上加了个空行) */
+.register-page {
+    img.captcha {
+        margin-bottom: 0px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+}
