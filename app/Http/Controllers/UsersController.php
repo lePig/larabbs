@@ -9,6 +9,11 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        // 除了users.show这个路由页面，访问其他页面如果用户未登录都跳转到登录页面
+        $this->middleware('auth', ['except' => 'show']);
+    }
     /**
      * 个人中心页面
      * @date   2018-03-07
@@ -28,6 +33,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
