@@ -70,3 +70,12 @@ body {
         cursor: pointer;
     }
 }
+
+/** 用户个人页面头像下面的样式 */
+.users-show-page {
+    .user-info {
+        .thumbnail {
+            margin-bottom: 0px;
+        }
+    }
+}

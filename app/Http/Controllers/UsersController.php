@@ -9,21 +9,41 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+    /**
+     * 个人中心页面
+     * @date   2018-03-07
+     * @param  User       $user [description]
+     * @return [type]           [description]
+     */
     public function show(User $user)
     {
         return view('users.show', compact('user'));
     }
 
+    /**
+     * 编辑用户资料页面展示
+     * @date   2018-03-07
+     * @param  User       $user [description]
+     * @return [type]           [description]
+     */
     public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
 
+    /**
+     * 更新用户资料信息
+     * @date   2018-03-07
+     * @param  UserRequest        $request  [description]
+     * @param  User               $user     [description]
+     * @param  ImageUploadHandler $uploader [description]
+     * @return [type]                       [description]
+     */
     public function update(UserRequest $request, User $user, ImageUploadHandler $uploader)
     {
         $data = $request->all();
         if ($request->avatar) {
-            $path = $uploader->save($request->avatar, 'avatars', $user->id);
+            $path = $uploader->save($request->avatar, 'avatars', $user->id, 360); //360为裁剪图片的宽度
             if ($path) {
                 $data['avatar'] = $path['path'];
             }
