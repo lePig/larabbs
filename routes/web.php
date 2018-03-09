@@ -33,3 +33,4 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 // Route::get('/home', 'HomeController@index')->name('home'); //删除默认主页
 
 Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
