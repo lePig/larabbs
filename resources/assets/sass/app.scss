@@ -81,7 +81,7 @@ body {
 }
 
 /* 话题列表页面 */
-.topics-index-page {
+.topics-index-page, .categories-show-page{ //列表页 以及分类下话题列表页字体变灰
     .topic-list {
         .nav > li > a {
             position: relative;
