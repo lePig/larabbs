@@ -14,6 +14,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
+    // 话题首页列表
 	public function index(Request $request)
 	{
         // dd($request->order);

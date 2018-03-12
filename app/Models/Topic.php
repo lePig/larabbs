@@ -16,7 +16,7 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
-    // 通过order进行话题排序
+    // 通过控制器传过来的order进行话题排序
     public function scopeWithOrder($query, $order)
     {
         switch ($order) {
@@ -28,6 +28,7 @@ class Topic extends Model
                 $query = $this->recentReplied();
                 break;
         }
+        // 这里调用with方法是为了防止N+1的问题
         return $query->with('user', 'category');
     }
 
