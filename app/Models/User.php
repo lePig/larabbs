@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * 该用户发表的所有话题列表[一对多模型]
+     * @date   2018-03-12
+     */
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

@@ -10,6 +10,7 @@ class CategoriesController extends Controller
 {
     public function show(Category $category, Topic $topic)
     {
+        // dd((new \App\Models\User)->topics);
         $order = request('order');
         // 为什么从控制器调用 model 的时候 不能先调用 where 语句？
         // $topics = Topic::where('category_id', $category->id)->withOrder($order)->paginate(20);
