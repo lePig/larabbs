@@ -18,4 +18,10 @@ class TopicObserver
     {
         //
     }
+
+    //当对topic模型做入库操作(create or update)时触发此事件
+    public function saving(Topic $topic)
+    {
+        $topic->excerpt = make_excerpt($topic->body);
+    }
 }
