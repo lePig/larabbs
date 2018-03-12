@@ -34,6 +34,11 @@ class User extends Authenticatable
      */
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        /**
+         * 第一个参数是你要has的模型类名
+         * 第二个参数是你要has模型的foreign_key 也就是在别的表中用户id的字段名，可以省略
+         * 第三个参数是上面foreign_key对应本表(users表)中的字段名，默认为id 可省略
+         */
+        return $this->hasMany(Topic::class, 'user_id', 'id');
     }
 }

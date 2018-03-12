@@ -29,6 +29,7 @@ class Topic extends Model
                 break;
         }
         // 这里调用with方法是为了防止N+1的问题
+        // dd($query->toSql());
         return $query->with('user', 'category');
     }
 

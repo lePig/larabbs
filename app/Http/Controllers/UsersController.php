@@ -22,8 +22,10 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        $topics = $user->topics;
-        return view('users.show', compact('user', 'topics'));
+        // $topics = $user->topics;
+        // $topics = $user->hasOneTopics;
+        // dd($topics);
+        return view('users.show', compact('user'));
     }
 
     /**
