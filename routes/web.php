@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@root')->name('root');
+Route::any('http', 'TestController@http')->name('test.http');
 
 // Auth::routes(); //为了直观，用下面的这些替代
 // Authentication Routes Begin
@@ -33,6 +34,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 // Route::get('/home', 'HomeController@index')->name('home'); //删除默认主页
 
 Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show'); //为了使用友好链接而创建的路由
+
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');

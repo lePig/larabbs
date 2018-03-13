@@ -43,4 +43,16 @@ class Topic extends Model
     {
         return $query->orderBy('updated_at', 'desc');
     }
+
+
+    /**
+     * 给话题详情页转换友好链接使用
+     * @date   2018-03-13
+     */
+    public function link($params = [])
+    {
+        // var_dump($params);
+        //返回类似如下链接 http://larabbs.test/topics/115/comprehensive-analysis-of-golang-interface
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
 }

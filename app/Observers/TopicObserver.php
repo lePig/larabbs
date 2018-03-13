@@ -23,5 +23,10 @@ class TopicObserver
     public function saving(Topic $topic)
     {
         $topic->excerpt = make_excerpt($topic->body);
+
+        // 如果topics表中的slug字段没有值那么入库的时候插入
+        if (! $topic->slug) {
+            $topic->slug = app(\App\Handlers\SlugTranslateHandler::class)->translate($topic->title);
+        }
     }
 }

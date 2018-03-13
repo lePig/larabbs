@@ -28,6 +28,10 @@ class TopicsController extends Controller
 
     public function show(Topic $topic)
     {
+        // 当slug字段有值的时候我们强制跳转(301)到带有slug的url
+        if (! empty($topic->slug) && $topic->slug != request()->slug) {
+            return redirect($topic->link(), 301);
+        }
         return view('topics.show', compact('topic'));
     }
 
@@ -51,7 +55,8 @@ class TopicsController extends Controller
         $topic->user_id = Auth::id();
 		// $topic = Topic::create($request->all());
         $topic->save();
-		return redirect()->route('topics.show', $topic->id)->with('message', '发表成功');
+        return redirect()->to($topic->link())->with('message', '发表成功');
+		// return redirect()->route('topics.show', $topic->id)->with('message', '发表成功');
 	}
 
     /**
@@ -70,7 +75,8 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', '更新成功');
+        return redirect()->to($topic->link())->with('message', '更新成功');
+		// return redirect()->route('topics.show', $topic->id)->with('message', '更新成功');
 	}
 
 	public function destroy(Topic $topic)
