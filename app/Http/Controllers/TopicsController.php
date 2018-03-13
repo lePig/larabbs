@@ -54,10 +54,15 @@ class TopicsController extends Controller
 		return redirect()->route('topics.show', $topic->id)->with('message', '发表成功');
 	}
 
+    /**
+     * 编辑页面(和创建页面共用一个模板)
+     * @date   2018-03-13
+     */
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
+        $categories = Category::all();
+		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)

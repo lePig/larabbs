@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="topic-body">
-                    {{ $topic->body }}
+                    {!! $topic->body !!}  {{-- 这个必须要原样输出。不然标签及样式无法被渲染出来 --}}
                 </div>
 
                 <div class="operate">
