@@ -75,7 +75,8 @@ class TopicsController extends Controller
 
 	public function destroy(Topic $topic)
 	{
-		$this->authorize('destroy', $topic);
+		// $this->authorize('destroy1', $topic);
+        $this->authorize('isAuthorOf', $topic);
 		$topic->delete();
 
 		return redirect()->route('topics.index')->with('message', '已成功删除了话题');

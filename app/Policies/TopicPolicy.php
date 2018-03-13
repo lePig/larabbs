@@ -18,6 +18,16 @@ class TopicPolicy extends Policy
 
     public function destroy(User $user, Topic $topic)
     {
-        return true;
+        return $user->id == $topic->user_id;
+        // return true;
+    }
+
+    /**
+     * 由于上面2个方法一直写(return $user->id == $topic->user_id) 所以重构此方法
+     * @date   2018-03-13
+     */
+    public function isAuthorOf(User $user, Topic $model)
+    {
+        return $user->id == $model->user_id;
     }
 }
