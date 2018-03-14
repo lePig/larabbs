@@ -24,5 +24,9 @@
 
 {{-- 分页 --}}
 {!! $replies->appends(Request::except('page'))->render() !!}
-
 {{-- 我们在url中使用tab来对`话题`和`回复`进行区分。所以这里使用appends()可以对url中的参数进行继承 --}}
+
+
+{{-- 分页的另一种写法如下，更加简洁https://laravel-china.org/docs/laravel/5.5/pagination#ed54e0 --}}
+{{-- {!! $replies->appends(['tab' => 'replies'])->links() !!}  --}}
+
