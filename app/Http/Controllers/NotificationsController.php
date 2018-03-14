@@ -15,6 +15,9 @@ class NotificationsController extends Controller
     {
         $notifications = Auth::user()->notifications()->paginate(20);
         // dd($notifications);
+        // 标记已读 未读数量清零
+        Auth::user()->makeAsRead();
         return view('notifications.index', compact('notifications'));
     }
+
 }

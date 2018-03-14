@@ -26,6 +26,18 @@ class User extends Authenticatable
     }
 
     /**
+     * 标记所有的消息为已读状态
+     */
+    public function makeAsRead()
+    {
+        $this->notification_count = 0;
+
+        $this->save();
+
+        $this->unreadNotifications->makeAsRead();
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
