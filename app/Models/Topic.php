@@ -16,6 +16,15 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * 这个话题下有多少条评论(一对多)
+     * @date   2018-03-14
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'topic_id', 'id');
+    }
+
     // 通过控制器传过来的order进行话题排序
     public function scopeWithOrder($query, $order)
     {
