@@ -37,4 +37,11 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+
+    // 删除某个话题后，连带删除此话题下的所有评论
+    public function deleted(Topic $topic)
+    {
+        // 重点注意：在模型监听器中不要使用Eloquent
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
 }
