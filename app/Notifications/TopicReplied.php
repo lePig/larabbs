@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Reply;
 
-class TopicReplied extends Notification
+class TopicReplied extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,10 +34,11 @@ class TopicReplied extends Notification
     public function via($notifiable)
     {
         // 开启通知的通道
-        return ['database'];
+        // return ['database'];
+        return ['database', 'mail'];
     }
 
-    public function toDatabase()
+    public function toDatabase($notifiable)
     {
         //dd($notifiable); //打印的是User模型对象
         $topic = $this->reply->topic;
@@ -54,6 +55,19 @@ class TopicReplied extends Notification
             'topic_id'      => $topic->id,
             'topic_title'   => $topic->title,
         ];
+    }
+
+    /**
+     * via函数开启了email 所以需要此函数
+     * @date   2018-03-15
+     */
+    public function toMail($notifiable)
+    {
+        //url地址形如：http://larabbs.test/topics/101/how-does-golang-get-started?#reply74
+        $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
+        \Log::info($url);
+
+        return (new MailMessage)->line('你的话题有了新回复')->action('查看回复', $url);
     }
 
     /**
