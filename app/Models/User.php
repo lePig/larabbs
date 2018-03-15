@@ -14,6 +14,9 @@ class User extends Authenticatable
     }
 
     // 没太明白这里的写法意思。 还得补下基础
+    // --2018-03-15 update---
+    // 上面的use Notifiable {notify as protected laravelNotify}的意思是将Notifiable这个trait中的notify方法做了一个别名为laravelNotify
+    // 因为在本类(User)中，也同样定义了一个notify方法，这个方法会覆盖trait中的notify，因为要继续在本类中使用trait中的notify所以进行了别名
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
