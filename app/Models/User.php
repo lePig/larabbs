@@ -31,13 +31,13 @@ class User extends Authenticatable
     /**
      * 标记所有的消息为已读状态
      */
-    public function makeAsRead()
+    public function markAsRead()
     {
         $this->notification_count = 0;
 
         $this->save();
 
-        $this->unreadNotifications->makeAsRead();
+        $this->unreadNotifications->markAsRead();
     }
 
     /**

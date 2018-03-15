@@ -37,8 +37,9 @@ class TopicReplied extends Notification
         return ['database'];
     }
 
-    public function toDatabase($notifiable)
+    public function toDatabase()
     {
+        //dd($notifiable); //打印的是User模型对象
         $topic = $this->reply->topic;
         $link = $topic->link(['#reply' . $this->reply->id]);
 
