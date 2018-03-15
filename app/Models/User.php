@@ -77,4 +77,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class, 'user_id', 'id');
     }
+
+    /**
+     * 由于topic授权类时间里一直写(return $user->id == $topic->user_id) 所以在user模型中重构此方法
+     * 这样其他的策略类里可以直接使用$user->isAuthorOf('策略模型')来调用
+     * @date   2018-03-13
+     */
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 }
