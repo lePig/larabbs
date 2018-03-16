@@ -46,5 +46,13 @@ class UsersTableSeeder extends Seeder
         $user->email = 'lepig@qq.com';
         $user->avatar = 'https://fsdhubcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png?imageView2/1/w/200/h/200';
         $user->save();
+
+        //将1号用户初始化为站长
+        $user->assignRole('Founder'); //assignRole()这个方法在HasRoles中定义了，我们已经User模型中使用use引入
+
+        //将2号用户指定为管理员
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
+
     }
 }
