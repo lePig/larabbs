@@ -28,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //horizon的auth方法接受一个回调函数，此函数需要返回true或false
+        \Horizon::auth(function($request) {
+            //是否为站长
+            return \Auth::user()->hasRole('Founder');
+        });
     }
 }
