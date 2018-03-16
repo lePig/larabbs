@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasRoles; //使用laravel-permission包提供的trait
-    
+
     use Notifiable {
         notify as protected laravelNotify;
     }
@@ -88,5 +88,30 @@ class User extends Authenticatable
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
+    }
+
+    // Eloquent的修改器机制，来修改密码
+    public function setPasswordAttribute($value)
+    {
+        // 这一步判断是因为重置密码哪里已经加完密了
+        if (strlen($value) != 60){
+            $value = bcrypt($value);
+        }
+
+        $this->attributes['password'] = $value;
+    }
+
+    // 使用修改器来修改头像地址
+    public function setAvatarAttribute($value)
+    {
+
+        if (strpos($value, 'http') === false) {
+            $avatarUrl = config('app.url') . '/uploads/images/avatars/' . $value;
+        }
+
+        $this->attributes['avatar'] = $avatarUrl;
+
+        //laravel也提供一个starts_with函数来更好封装了strpos
+        // if (! start_with($value, 'http')) {}
     }
 }
