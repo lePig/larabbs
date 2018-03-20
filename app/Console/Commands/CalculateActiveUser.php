@@ -38,10 +38,10 @@ class CalculateActiveUser extends Command
      */
     public function handle(User $user)
     {
-        $this->info('开始计算');
+        $this->info('[' . date('Y-m-d H:i:s') . '] ' . '开始计算');
 
         $user->calculateAndCacheActiveUsers();
-        
-        $this->info('计算完毕');
+
+        $this->info('[' . date('Y-m-d H:i:s') . '] ' . '计算完毕');
     }
 }

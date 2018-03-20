@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         // 一小时执行一次【活跃用户】数据生成命令
-        $schedule->command('larabbs:calculate-active-user')->everyMinute();
+        $schedule->command('larabbs:calculate-active-user')->everyMinute()->appendOutputTo('/home/vagrant/cron.log');
     }
 
     /**
