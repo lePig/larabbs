@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('description', 'LaraBBS社区呀呀呀!')">
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', '这里是默认关键字'))">
+    <meta name="description" content="@yield('description', setting('seo_description', '这里是默认SEO描述'))">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
