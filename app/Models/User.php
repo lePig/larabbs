@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
+// use App\Models\Traits\ActiveUserHelper;
+
 
 class User extends Authenticatable
 {
@@ -14,11 +16,14 @@ class User extends Authenticatable
     use Notifiable {
         notify as protected laravelNotify;
     }
-
     // 没太明白这里的写法意思。 还得补下基础
     // --2018-03-15 update---
     // 上面的use Notifiable {notify as protected laravelNotify}的意思是将Notifiable这个trait中的notify方法做了一个别名为laravelNotify
     // 因为在本类(User)中，也同样定义了一个notify方法，这个方法会覆盖trait中的notify，因为要继续在本类中使用trait中的notify所以进行了别名
+    /** ---------------------------------------------------------------------------------------------------------------------------------------- */
+    use Traits\ActiveUserHelper;
+
+
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
@@ -106,10 +111,10 @@ class User extends Authenticatable
     {
 
         if (strpos($value, 'http') === false) {
-            $avatarUrl = config('app.url') . '/uploads/images/avatars/' . $value;
+            $value = config('app.url') . '/uploads/images/avatars/' . $value;
         }
 
-        $this->attributes['avatar'] = $avatarUrl;
+        $this->attributes['avatar'] = $value;
 
         //laravel也提供一个starts_with函数来更好封装了strpos
         // if (! start_with($value, 'http')) {}
