@@ -11,8 +11,12 @@ class TestController extends Controller
     {
         // dd(\Route::currentRouteAction());
         // dd(\Route::currentRouteName());
-        $slug = new SlugTranslateHandler();
-        $text = '深入理解nginx与php交互';
-        return $slug->translate($text);
+        // $slug = new SlugTranslateHandler();
+        // $text = '深入理解nginx与php交互';
+        // return $slug->translate($text);
+
+        echo model_link('abc', app(\App\Models\Topic::class), 'admin');
+
+
     }
 }
