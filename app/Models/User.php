@@ -22,6 +22,7 @@ class User extends Authenticatable
     // 因为在本类(User)中，也同样定义了一个notify方法，这个方法会覆盖trait中的notify，因为要继续在本类中使用trait中的notify所以进行了别名
     /** ---------------------------------------------------------------------------------------------------------------------------------------- */
     use Traits\ActiveUserHelper;
+    use Traits\LastActivedAtHelper;
 
 
     public function notify($instance)

@@ -65,7 +65,7 @@ class TopicReplied extends Notification implements ShouldQueue
     {
         //url地址形如：http://larabbs.test/topics/101/how-does-golang-get-started?#reply74
         $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
-        \Log::info($url);
+        // \Log::info($url);
 
         return (new MailMessage)->line('你的话题有了新回复')->action('查看回复', $url);
     }

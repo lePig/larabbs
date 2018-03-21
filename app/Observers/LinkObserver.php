@@ -13,7 +13,7 @@ class LinkObserver
      */
     public function saved(Link $link)
     { 
-        \Log::info(['fuckcccccccccccc', $link->cache_key]);
+        // \Log::info(['fuckcccccccccccc', $link->cache_key]);
         Cache::forget($link->cache_key);
     }
 }
