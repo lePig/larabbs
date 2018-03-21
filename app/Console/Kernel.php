@@ -28,6 +28,10 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         // 一小时执行一次【活跃用户】数据生成命令
+        // appendOutputTo('/home/vagrant/cron.log') 追加生成
+        // sendOutputTo('/home/vagrant/cron.log') 覆盖生成
+        // emailOutputTo('lepig@qq.com') //发送邮件
+        // evenInMaintenceMode() //维护模式
         $schedule->command('larabbs:calculate-active-user')->everyMinute()->appendOutputTo('/home/vagrant/cron.log');
     }
 
