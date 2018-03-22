@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         // sendOutputTo('/home/vagrant/cron.log') 覆盖生成
         // emailOutputTo('lepig@qq.com') //发送邮件
         // evenInMaintenceMode() //维护模式
-        $schedule->command('larabbs:calculate-active-user')->everyMinute()->appendOutputTo('/home/vagrant/cron.log');
+        $schedule->command('larabbs:calculate-active-user')->everyFiveMinutes()->appendOutputTo('/home/vagrant/cron.log');
 
         //每天零点同步用户最后活动时间到users表的last_actived_at字段
         $schedule->command('larabbs:sync-user-actived-at')->dailyAt('00:00');
