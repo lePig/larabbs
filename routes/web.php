@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+// Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'TopicsController@index')->name('root');
+
 Route::any('http', 'TestController@http')->name('test.http');
 
 // Auth::routes(); //为了直观，用下面的这些替代
