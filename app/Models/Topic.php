@@ -30,11 +30,11 @@ class Topic extends Model
     {
         switch ($order) {
             case 'recent':
-                $query = $this->recent();
+                $query ->recent();
                 break;
-            
+
             default:
-                $query = $this->recentReplied();
+                $query ->recentReplied();
                 break;
         }
         // 这里调用with方法是为了防止N+1的问题
@@ -45,7 +45,7 @@ class Topic extends Model
     // 按照创建时间倒序排列
     public function scopeRecent($query)
     {
-        return $query->orderBy('created_at', 'desc');   
+        return $query->orderBy('created_at', 'desc');
     }
 
     public function scopeRecentReplied($query)
