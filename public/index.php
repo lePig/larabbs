@@ -52,6 +52,8 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
+    // https://laravel-china.org/wikis/16069
+    // https://laravel-china.org/topics/3430/modify-request-headers-incomplete-raiders
     $request = Illuminate\Http\Request::capture()
 );
 
