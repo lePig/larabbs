@@ -1,7 +1,8 @@
 <?php
 namespace App\Models\Traits;
 
-use Redis;
+// use Redis;
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use DB;
 
@@ -33,7 +34,7 @@ trait LastActivedAtHelper {
 
         //写入数据，字段已存在会被更新
         Redis::hSet($hash, $field, $now);
-        
+
     }
 
     /**
